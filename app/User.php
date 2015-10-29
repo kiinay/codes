@@ -9,6 +9,9 @@ use Illuminate\Foundation\Auth\Access\Authorizable;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Validator;
 
 class User extends Model implements AuthenticatableContract,
                                     AuthorizableContract,
@@ -43,6 +46,7 @@ class User extends Model implements AuthenticatableContract,
         'password',
         'remember_token'
     ];
+
 
     public function post() {
       return $this->hasMany('App\Post');

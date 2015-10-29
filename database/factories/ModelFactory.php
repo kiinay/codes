@@ -32,7 +32,8 @@ $factory->define(App\Post::class, function (Faker\Generator $faker) {
         'title' => $faker->word,
         'content' => $faker->paragraph(4),
         'user_id' => rand(1,20),
-        'category_id' => rand(1,2)
+        'category_id' => rand(1,2),
+        'published_at' => $faker->dateTimeThisYear($max = 'now')
     ];
 });
 

@@ -2,7 +2,9 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Post extends Model
 {
@@ -15,6 +17,11 @@ class Post extends Model
       'published_at',
       'status'
   ];
+
+  public function getSlugAttribute($value)
+  {
+    return Str::slug($this->title, '-');
+  }
 
   public function user() {
     return $this->belongsTo('App\User');
@@ -34,5 +41,12 @@ class Post extends Model
 
   public function media() {
     return $this->belongsTo('App\Media');
+  }
+
+  /* Scope */
+
+  public function scopeTest($query)
+  {
+//    return $query->paginate(10)->where('published_at', '<', Carbon::now());
   }
 }

@@ -11,11 +11,16 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+/* Routes for Home */
+Route::get('/', 'FrontController@show');
 
 /* Routes for Post */
-Route::get('/posts', 'PostController@show');
+Route::get('/posts', 'FrontController@showAll');
+Route::get('/post/{id}/{slug?}', 'FrontController@showPost');
 
-Route::get('post/{id}/{slug?}', 'FrontController@show');
+/* Routes for User */
+Route::get('/users', 'FrontController@showUsers');
+Route::get('/user/{id}', 'FrontController@showUser');
+
+Route::get('/create-user', 'FrontController@createUser');
+Route::post('/user-created', 'FrontController@userCreated');
