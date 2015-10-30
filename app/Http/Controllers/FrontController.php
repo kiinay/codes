@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
 use App\Post;
 use App\User;
 use Carbon\Carbon;
@@ -31,7 +32,7 @@ class FrontController extends Controller
    ****************************************************/
 
   public function showAll() {
-    $posts = Post::all();
+    $posts = Post::orderBy('published_at', 'desc')->with('category', 'tags', 'comments', 'user')->get();
 
     return view('post.index', compact('posts'));
   }
@@ -42,29 +43,36 @@ class FrontController extends Controller
     return view('post.single', compact('post'));
   }
 
+  public function showPostByCategory($id) {
+    $posts = Category::find($id)->posts;
+
+    return view('category.index', compact('posts'));
+  }
+
   /****************************************************
    *
    * Request for User views
    *
    ****************************************************/
 
-  public function showUsers() {
-    $users = User::all();
+//  public function deleteUser($id) {
+//    $user = User::find($id);
+//
+//    $user->delete();
+//
+//    return view('user.index');
+//  }
 
-    return view('user.index', compact('users'));
-  }
+  /****************************************************
+   *
+   * Request for Categories views
+   *
+   ****************************************************/
 
-  public function showUser($id) {
-    $user = User::find($id);
+  public function showCategory($id) {
+    $category = Category::find($id);
+    $posts = Post::where('category_id', '=', $id);
 
-    return view('user.single', compact('user'));
-  }
-
-  public function createUser() {
-    return view('user.create');
-  }
-
-  public function userCreated(Requests\UserFormRequest $request) {
-    dd($request->all());
+    return view('category.index', compact('category', 'posts'));
   }
 }

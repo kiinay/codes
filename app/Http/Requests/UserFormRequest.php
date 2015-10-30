@@ -24,7 +24,11 @@ class UserFormRequest extends Request
     public function rules()
     {
         return [
-            'email' => 'required|email'
+            'name' => 'required|min:5',
+            'email' => 'required|email',
+            'password' => 'required|min:6',
+            'confirm_password' => 'required|min:6',
+            'remember_token' => 'required|max:100'
         ];
     }
 }

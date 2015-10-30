@@ -1,20 +1,18 @@
-<a href="{{ url('posts') }}">
+<a href="{{ url('category', [1]) }}">
   <li>
-    Posts
+    Programming
   </li>
 </a>
-<li>
-  Category
-</li>
-<li>
-  Programming
-</li>
-<li>
-  Algorithm
-</li>
-<li>
-  Contact
-</li>
+<a href="{{ url('category', [2]) }}">
+  <li>
+    Algorithm
+  </li>
+</a>
+<a href="{{ url('user/create') }}">
+  <li>
+    Contact
+  </li>
+</a>
 <li>
   Login
 </li>

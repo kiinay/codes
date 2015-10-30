@@ -17,6 +17,10 @@ body {
         font-size: 2.2rem; }
         body #header-container ul li:hover {
           background-color: #730000; }
+  body .container .post:nth-child(even) {
+    background: #bdbdbd; }
+  body .container .post:nth-child(odd) {
+    background: #FFF; }
   body #footer-container {
     background-color: red;
     text-align: center; }

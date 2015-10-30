@@ -19,8 +19,12 @@ Route::get('/posts', 'FrontController@showAll');
 Route::get('/post/{id}/{slug?}', 'FrontController@showPost');
 
 /* Routes for User */
-Route::get('/users', 'FrontController@showUsers');
-Route::get('/user/{id}', 'FrontController@showUser');
+//Route::get('/users', 'UserController@index');
+//Route::get('/user/{id}', 'UserController@show');
+//Route::get('/create-user', 'UserController@create');
+Route::resource('user', 'UserController');
 
-Route::get('/create-user', 'FrontController@createUser');
-Route::post('/user-created', 'FrontController@userCreated');
+Route::get('/delete-user/{id}', 'FrontController@deleteUser');
+
+/* Routes for Category */
+Route::get('/category/{id}', 'FrontController@showPostByCategory');
